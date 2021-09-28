@@ -1,0 +1,565 @@
+<html lang="en"><head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="http://www.himatelkom.com/trial_hima/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/coliff/bootstrap-rfs/bootstrap-rfs.css">
+    <title>Hima Telkom PENS</title>
+    <style>
+        .material-icons.md-24 {
+            color: #555;
+            font-size: 24px;
+        }
+
+        .extend_card {
+            border-radius: 20px;
+            padding: 8%;
+            width: 18rem;
+            border: 0;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+            transition: padding 0.1s;
+            margin: 4% 0 4% 0;
+        }
+
+        .extend_card:hover {
+            padding: 4%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
+        }
+
+        .kegiatan {
+            overflow: hidden;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+            border: 0;
+        }
+
+        .pootl {
+            text-align: left;
+        }
+
+        .pootr {
+            text-align: right;
+        }
+
+        @media screen and (max-width: 667px) {
+            .pootl {
+                padding-bottom: 1%;
+                text-align: center;
+            }
+
+            .pootr {
+                padding-top: 1%;
+                text-align: center;
+            }
+        }
+    </style>
+    <style>._3emE9--dark-theme .-S-tR--ff-downloader{background:rgba(30,30,30,.93);border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#fff}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{background:#3d4b52}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#131415}._3emE9--dark-theme .-S-tR--ff-downloader ._10vpG--footer{background:rgba(30,30,30,.93)}._2mDEx--white-theme .-S-tR--ff-downloader{background:#fff;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#314c75}._2mDEx--white-theme .-S-tR--ff-downloader ._6_Mtt--header{font-weight:700}._2mDEx--white-theme .-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{border:0;color:rgba(0,0,0,.88)}._2mDEx--white-theme .-S-tR--ff-downloader ._10vpG--footer{background:#fff}.-S-tR--ff-downloader{display:block;overflow:hidden;position:fixed;bottom:20px;right:7.1%;width:330px;height:180px;background:rgba(30,30,30,.93);border-radius:2px;color:#fff;z-index:99999999;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);transition:.5s}.-S-tR--ff-downloader._3M7UQ--minimize{height:62px}.-S-tR--ff-downloader._3M7UQ--minimize .nxuu4--file-info,.-S-tR--ff-downloader._3M7UQ--minimize ._6_Mtt--header{display:none}.-S-tR--ff-downloader ._6_Mtt--header{padding:10px;font-size:17px;font-family:sans-serif}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{float:right;background:#f1ecec;height:20px;width:20px;text-align:center;padding:2px;margin-top:-10px;cursor:pointer}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#e2dede}.-S-tR--ff-downloader ._13XQ2--error{color:red;padding:10px;font-size:12px;line-height:19px}.-S-tR--ff-downloader ._2dFLA--container{position:relative;height:100%}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info{padding:6px 15px 0;font-family:sans-serif}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info div{margin-bottom:5px;width:100%;overflow:hidden}.-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{margin-top:21px;font-size:11px}.-S-tR--ff-downloader ._10vpG--footer{width:100%;bottom:0;position:absolute;font-weight:700}.-S-tR--ff-downloader ._10vpG--footer ._2V73d--loader{-webkit-animation:n0BD1--rotation 3.5s linear forwards;animation:n0BD1--rotation 3.5s linear forwards;position:absolute;top:-120px;left:calc(50% - 35px);border-radius:50%;border:5px solid #fff;border-top-color:#a29bfe;height:70px;width:70px;display:flex;justify-content:center;align-items:center}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar{width:100%;height:18px;background:#dfe6e9;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar ._1FVu9--progress-bar{height:100%;background:#8bc34a;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status{margin-top:10px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1XilH--state{float:left;font-size:.9em;letter-spacing:1pt;text-transform:uppercase;width:100px;height:20px;position:relative}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1jiaj--percentage{float:right}</style></head><nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffffff;box-shadow: 0px 0px 10px #000;z-index: 1;">
+        <a class="navbar-brand" href="#" style="vertical-align: middle;margin:1%;">
+            <img src="assets/img/logohima.png" width="40" height="40" class="d-inline-block align-middle" alt="" style="display:inline-block;">
+            <span class="navbar-brand mb-0 h1 align-middle" style="display:inline-block;color:#00826c;font-family: 'Roboto', sans-serif;margin-left:2%;font-size:12pt;">HIMA
+                TELKOM PENS</span>
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse" id="navbarSupportedContent" style="margin: 1%;">
+            <ul class="navbar-nav ml-auto nav justify-content-center" style="font-family: 'Roboto:400',sans-serif;font-size:12pt;margin:0 1% 0 1%;">
+                <li class="nav-item" style="">
+                    <a class="nav-link" style="text-align:center" href="utama.html"><span style="color:#00826c;font-family: 'Roboto',sans-serif;font-weight:500;">Beranda</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="text-align:center" href="utama.html">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="text-align:center" href="berita.html">Berita</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" style="text-align:center" aria-expanded="false">
+                        Lain-lain
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="text-align:center" href="#">Kontak</a>
+                </li>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+
+                <div class="input-group" style="border-radius:30px;overflow:hidden;background:#f1f2f6;font-family: 'Roboto:400',sans-serif;">
+                    <input type="text" class="form-control mr-sm-2 " placeholder="Pencarian" aria-label="Pencarian" aria-describedby="button-addon2" style="border:none;background:rgba(0,0,0,0);">
+                    <div class="input-group-append">
+                        <button class="btn my-2 my-sm-0" type="button" id="button-addon2" style="background:rgba(0,0,0,0);border:none;"><i class="material-icons md-12 d-inline-block align-middle">search</i></button>
+                    </div>
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </nav>
+    <!-- MEDIA HIMA -->
+    <body data-new-gr-c-s-check-loaded="14.980.0">
+    <div style="background-color:#f1f2f6;padding-bottom:1.5%;clip-path: polygon(0% 0, 600% 0%, 0% 100%, 0 100%);">
+        <div style="background-color:#00826c;padding-bottom:0.5%;clip-path: polygon(0% 0, 600% 0%, 0% 100%, 0 100%);">
+            <img src="assets/img/hima_backdrop.jpg" class="asyncImage img-fluid" alt="Responsive image" style="clip-path: polygon(0% 0, 600% 0%, 0% 100%, 0
+            100%);border-radius:0px 0px 0% 0%;">
+        </div>
+    </div>
+
+    <div class="container-fluid" style="margin-top:8%;padding:0 2% 0 2%;">
+        <center>
+            <p class="h3" style="text-align:center;">Media HIMA Telkom PENS</p>
+            <div style="background-color:#ffb74a;width:50pt;height:5px;margin:1% 0% 2% 0%;"></div>
+        </center>
+        <div class="row" style="margin:0%;">
+            <div class="col">
+                <center>
+                    <a href="#">
+                        </a><div class="card extend_card"><a href="#">
+                            <img src="assets/img/icon_tnc.png" class="card-img-top asyncImage" alt="...">
+                            </a><div class="card-body" style="text-align:center;"><a href="#">
+                                </a><a data-toggle="collapse" href="#collapseTNC" role="button" aria-expanded="false" aria-controls="collapseExample" style="text-decoration:none;">
+                                    <h5 class="card-title" style="color:#00826c;">Telkom News Channel</h5>
+                                    <p class="text-muted"><small>Apa itu Telkom News Channel?<br><i>Klik untuk
+                                                selengkapnya.</i></small></p>
+                                </a>
+                                <div class="collapse" id="collapseTNC">
+                                    <div class="card card-body" style="text-align:left;">
+                                        TNC (Telkom News Channel) adalah media penyampai informasi dan dokumentasi untuk
+                                        setiap event yang
+                                        diselenggarakan oleh Hima Telkom PENS dalam bentuk video yang dipublikasikan
+                                        melalui
+                                        channel Youtube TNC Hima Telkom.<br><br>
+                                        <a href="https://www.youtube.com/channel/UCoasLDoqmVfDpWbSTksmFvA" class="btn btn-info">Kunjungi Youtube TNC</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </center>
+            </div>
+            <div class="col">
+                <center>
+                    <a href="#">
+                        </a><div class="card extend_card"><a href="#">
+                            <img src="assets/img/icon_eos.png" class="card-img-top asyncImage" alt="...">
+                            </a><div class="card-body" style="text-align:center;"><a href="#">
+                                </a><a data-toggle="collapse" href="#collapseEos" role="button" aria-expanded="false" aria-controls="collapseExample" style="text-decoration:none;">
+                                    <h5 class="card-title" style="color:#00826c;">EEPIS On Sky</h5>
+                                    <p class="text-muted"><small>Apa itu EEPIS On Sky?<br><i>Klik untuk
+                                                selengkapnya.</i></small></p>
+
+                                </a>
+                                <div class="collapse" id="collapseEos">
+                                    <div class="card card-body" style="text-align:left;">
+                                        Eepis On Sky (EOS) merupakan komunitas penyiar radio yang mewadahi minat bakat
+                                        Mahasiswa
+                                        Telekomunikasi dalam bidang broadcasting radio<br><br>
+                                        <a href="https://www.instagram.com/eepisonsky/" class="btn btn-info">Kunjungi Instagram EOS</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </center>
+            </div>
+            <div class="col">
+                <center>
+                    <a href="#">
+                        </a><div class="card extend_card"><a href="#">
+                            <img src="assets/img/icon_jurnalis.png" class="card-img-top asyncImage" alt="...">
+                            </a><div class="card-body" style="text-align:center;"><a href="#">
+                                </a><a data-toggle="collapse" href="#collapseTelco" role="button" aria-expanded="false" aria-controls="collapseExample" style="text-decoration:none;">
+                                    <h5 class="card-title" style="color:#00826c;">Sigma &amp; i-Telco</h5>
+                                    <p class="text-muted"><small>Apa itu Sigma &amp; i-Telco?<br><i>Klik untuk
+                                                selengkapnya.</i></small></p>
+                                </a>
+                                <div class="collapse" id="collapseTelco">
+                                    <div class="card card-body" style="text-align:left;">
+                                        Majalah Sigma dan Buletin i-Telco merupakan sebuah media publikasi oleh HIMA
+                                        TELKOM
+                                        dalam bentuk
+                                        media cetak serta media elektronik Issuu yang memuat artikel dan konten menarik
+                                        serta
+                                        kegiatan-kegiatan yang telah diselenggarakan HIMA Telkom PENS selama satu
+                                        kepengurusan.<br><br>
+                                        <a href="https://issuu.com/home/published" class="btn btn-info">Kunjungi Issuu HIMA Telkom</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </center>
+            </div>
+            <div class="col">
+                <center>
+                    <a href="#">
+                        </a><div class="card extend_card"><a href="#">
+                            <img src="assets/img/icon_dbalumni.png" class="card-img-top" alt="...">
+                            </a><div class="card-body" style="text-align:center;"><a href="#">
+                                </a><a data-toggle="collapse" href="#collapseAlumni" role="button" aria-expanded="false" aria-controls="collapseExample" style="text-decoration:none;">
+                                    <h5 class="card-title" style="color:#00826c;">Database Alumni</h5>
+                                    <p class="text-muted detail"><small>Apa itu DB Alumni?<br><i>Klik untuk
+                                                selengkapnya.</i></small></p>
+                                </a>
+                                <div class="collapse" id="collapseAlumni">
+                                    <div class="card card-body" style="text-align:left;">
+                                        Database Alumni (DB Alumni) merupakan sebuah media penyimpanan data dari para
+                                        alumni
+                                        Teknik Telekomunikasi PENS dalam bentuk halaman web.<br><br>
+                                        <a href="#" class="btn btn-info">Kunjungi DB Alumni</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </center>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- BERITA HIMA -->
+    <div class="container-fluid" style="margin-top:8%;padding:0 2% 0 2%;">
+        <div class="row" style="margin:0%;">
+            <div class="col-12 col-md-8">
+                <div class="head_title" style="margin-top:20px;">
+                    <p class="h3" style="">Berita Terbaru</p>
+                    <div style="display: inline-block;background-color:#ffb74a;width:50pt;height:5px;margin:5px 0% 20px 0%;">
+                    </div>
+                </div>
+
+                <ul class="list-unstyled">
+
+                    <li class="media">
+                        <img src="assets/img/bird.jpg" style="object-fit: cover;object-position: center center;width: 100pt;height: 100pt;" class="rounded asyncImage img-cropped align-self-center mr-3 img-fluid" alt="...">
+                        <div class="media-body">
+                            <p class="text-muted" style="margin:0;"><small>Sabtu, 4 September
+                                    2019</small></p>
+                            <h5 class="mt-0 mb-1" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical; ">
+                                List-based media object</h5>
+                            <div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical; ">
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                                ante sollicitudin.
+                                Cras
+                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                condimentum
+                                nunc ac
+                                nisi
+                                vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                            <a href="">Baca Selengkapnya</a>
+                        </div>
+                    </li>
+
+                    <hr>
+
+
+
+                    <li class="media">
+                        <img src="assets/img/bird.jpg" style="object-fit: cover;object-position: center center;width: 100pt;height: 100pt;" class="rounded asyncImage img-cropped align-self-center mr-3 img-fluid" alt="...">
+                        <div class="media-body">
+                            <p class="text-muted" style="margin:0;"><small>Sabtu, 4 September
+                                    2019</small></p>
+                            <h5 class="mt-0 mb-1" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical; ">
+                                List-based media object</h5>
+                            <div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical; ">
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                                ante sollicitudin.
+                                Cras
+                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                condimentum
+                                nunc ac
+                                nisi
+                                vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                            <a href="">Baca Selengkapnya</a>
+                        </div>
+                    </li>
+
+                    <hr>
+
+
+                    <li class="media">
+                        <img src="assets/img/bird.jpg" style="object-fit: cover;object-position: center center;width: 100pt;height: 100pt;" class="rounded asyncImage img-cropped align-self-center mr-3 img-fluid" alt="...">
+                        <div class="media-body">
+                            <p class="text-muted" style="margin:0;"><small>Sabtu, 4 September
+                                    2019</small></p>
+                            <h5 class="mt-0 mb-1" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical; ">
+                                List-based media object</h5>
+                            <div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical; ">
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                                ante sollicitudin.
+                                Cras
+                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                condimentum
+                                nunc ac
+                                nisi
+                                vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                            <a href="">Baca Selengkapnya</a>
+                        </div>
+                    </li>
+
+                    <hr>
+                    <li class="media">
+                        <img src="assets/img/bird.jpg" style="object-fit: cover;object-position: center center;width: 100pt;height: 100pt;" class="rounded asyncImage img-cropped align-self-center mr-3 img-fluid" alt="...">
+                        <div class="media-body">
+                            <p class="text-muted" style="margin:0;"><small>Sabtu, 4 September
+                                    2019</small></p>
+                            <h5 class="mt-0 mb-1" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical; ">
+                                List-based media object</h5>
+                            <div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical; ">
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                                ante sollicitudin.
+                                Cras
+                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                condimentum
+                                nunc ac
+                                nisi
+                                vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                            <a href="">Baca Selengkapnya</a>
+                        </div>
+                    </li>
+
+                    <hr>
+
+                    <li class="head_title"><button type="button" class="btn btn-info all_news">Lihat Semua
+                            Berita</button></li>
+
+                </ul>
+            </div>
+
+            <!-- liputan Hima -->
+            <div class="col-12 col-md-4">
+                <div class="">
+                    <div class="head_title" style="margin-top:20px;">
+                        <p class="h3" style="">Liputan Terbaru</p>
+                        <div style="display: inline-block;background-color:#ffb74a;width:50pt;height:5px;margin:5px 0% 20px 0%;">
+                        </div>
+                    </div>
+                    <div class="embed-responsive embed-responsive-16by9 rounded-lg">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/0sNmfxNAP7Q?rel=0" allowfullscreen=""></iframe>
+                    </div>
+                    <button type="button" class="btn btn-link btn-block mt-2" style="color:#00826c;">Lihat Semua Liputan
+                        TNC Hima
+                        Telkom</button>
+                </div>
+
+                <!-- Kegiatan Hima -->
+                <hr>
+                <div class="">
+                    <div class="head_title" style="margin-top:20px;">
+                        <p class="h3" style="">Kegiatan Mendatang</p>
+                        <div style="display: inline-block;background-color:#ffb74a;width:50pt;height:5px;margin:5px 0% 20px 0%;">
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 kegiatan rounded">
+                        <div class="card-body" style="border-left:5px solid #00826c;">
+                            <h5 class="mt-0 mb-1">Pelatihan LoRA</h5>
+                            <p style="margin:0;"><small>Sabtu, 4 September
+                                    2019 | 17.45-Selesai</small></p>
+                            <small class="text-muted">Untuk <cite title="Source Title" style="color:#00826c;"><b>Mahasiswa Aktif Teknik Telekomunikasi
+                                        PENS</b></cite></small>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card mb-3 kegiatan rounded">
+                        <div class="card-body" style="border-left:5px solid #00826c;">
+                            <h5 class="mt-0 mb-1">Pelatihan LoRA</h5>
+                            <p style="margin:0;"><small>Sabtu, 4 September
+                                    2019 | 17.45-Selesai</small></p>
+                            <small class="text-muted">Untuk <cite title="Source Title" style="color:#00826c;"><b>Mahasiswa Aktif Teknik Telekomunikasi
+                                        PENS</b></cite></small>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-link btn-block" style="color:#00826c;">Lihat Semua Kegiatan
+                        Mendatang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="margin-top:8%;padding:0 2% 0 2%;">
+        <center>
+            <p class="h3" style="text-align:center;">Kontak Kami</p>
+            <div style="background-color:#ffb74a;width:50pt;height:5px;margin:1% 0% 2% 0%;"></div>
+        </center>
+        <div class="row rounded-lg" style="margin:0%;">
+
+
+
+            <div class="col-12 col-md-8" style="">
+                <div class="card mb-3 kegiatan rounded" style="padding:20px 8% 20px 8%;color:#fff;box-shadow:none;">
+                    <h3>
+
+                        <small class="text-muted">Kirim Pesan untuk Hima Telkom PENS</small>
+                    </h3>
+                    <hr>
+                    <form>
+                        <div class="row mt-4">
+
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Nama Lengkap">
+                            </div>
+                            <div class="col">
+                                <input type="mail" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+
+
+                        <textarea class="form-control mt-4" style="min-height:100%;" placeholder="Tulis pesan anda disini" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+
+                        <div class="custom-file mt-4">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Tambahkan file jika ada</label>
+                        </div>
+
+
+                        <div class="row" style="float:right;">
+                            <div class="col-12 col-md-8 mt-4">
+                                <table>
+                                    <tbody><tr>
+                                        <td><label class="my-1 mr-2" for="inlineFormCustomSelectPref" style="color:#00826c;"><b>6+7
+                                                </b></label></td>
+                                        <td><label class="my-1 mr-2" for="inlineFormCustomSelectPref" style="color:#00826c;"><b>=
+                                                </b></label></td>
+                                        <td><input type="text" class="form-control" placeholder="Verifikasi Jawaban">
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </div>
+                            <div class="col-12 col-md-4 mt-4">
+                                <button type="submit" class="btn btn-info btn-block">Kirim</button>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+
+            </div>
+
+
+            <!-- INFO HIMA -->
+            <div class="col-12 col-md-4 rounded-lg">
+                <div class="card mb-3 kegiatan rounded" style="background:linear-gradient(to right, #00826c 0%, #45c6af 100%);padding:20px 8% 20px 8%;color:#fff;">
+                    <h3 style="text-align:center;">
+                        <small style="color:#fff;">Info Lainnya</small>
+                    </h3>
+                    <hr style="border-color:#fff;padding:0;">
+
+                    <div class="row mt-4">
+                        <div class="col-2"><img src="assets/img/email.svg" style="height:24px;width:auto;" class="align-self-center mr-3" alt="..."></div>
+                        <div class="col-10">
+                            <h5 style="text-align:left;">Email</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-10">
+                            <p style="display: inline-block;text-align:left;">himatelkom.pens@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-2"><img src="assets/img/location.svg" style="height:24px;width:auto;" class="align-self-center mr-3" alt="..."></div>
+                        <div class="col-10">
+                            <h5 style="text-align:left;">Lokasi</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-10">
+                            <p style="display: inline-block;text-align:left;">
+                                Kampus ITS, Jl. Raya ITS<br>Keputih, Kec. Sukolilo, Kota Surabaya<br>Jawa Timur 60111
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-2"><img src="assets/img/call.svg" style="height:24px;width:auto;" class="align-self-center mr-3" alt="..."></div>
+                        <div class="col-10">
+                            <h5 style="text-align:left;">Nomor Telefon</h5>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-2"></div>
+                        <div class="col-10">
+                            <p style="display:inline-block;text-align:left;">+62-858-5277-5429</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- FOOTER -->
+    <div class="foott container-fluid" style="margin-top:8%;padding:20px 2% 20px 2%;background:#f1f2f6;">
+        <div class="row" style="margin:0%;color:#9f9f9f;">
+            <div class="col-12 col-md-6 pootl">
+                © 2020 Himpunan Mahasiswa Telekomunikasi PENS
+            </div>
+            <div class="col-12 col-md-6 pootr">
+                <a href="https://www.facebook.com/himatelkom.eepis"><img src="assets/img/facebook.svg" style="width:auto;height:24px" class="rounded ml-1 mr-1" alt="..."></a>
+                <a href="https://www.instagram.com/himatelkom/"><img src="assets/img/instagram.svg" style="width:auto;height:24px" class="rounded ml-1 mr-1" alt="..."></a>
+                <a href="https://twitter.com/HimaTelkom"><img src="assets/img/twitter.svg" style="width:auto;height:24px" class="rounded ml-1 mr-1" alt="..."></a>
+            </div>
+        </div>
+    </div>
+
+    <!--A new look will appear soon-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script>
+        (() => {
+            'use strict';
+            // Page is loaded
+            const objects = document.getElementsByClassName('asyncImage');
+            Array.from(objects).map((item) => {
+                // Start loading image
+                const img = new Image();
+                img.src = item.dataset.src;
+                // Once image is loaded replace the src of the HTML element
+                img.onload = () => {
+                    item.classList.remove('asyncImage');
+                    return item.nodeName === 'IMG' ?
+                        item.src = item.dataset.src :
+                        item.style.backgroundImage = `url(${item.dataset.src})`;
+                };
+            });
+        })();
+    </script>
+
+
+</body></html>
