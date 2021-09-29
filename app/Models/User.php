@@ -16,12 +16,25 @@ class User extends Authenticatable
      *
      * @var array
      */
-    // protected $fillable = [
-    //     'name',
-    //     'username',
-    //     'email',
-    //     'password',
-    // ];
+    protected $fillable = [
+        'id',
+        'sid',
+        'nik',
+        'nik_ktp',
+        'password',
+        'id_company',
+        'id_department',
+        'pjo',
+        'struktural',
+        'fungsional',
+        'nama',
+        'tanggal_lahir',
+        'telp',
+        'alamat',
+        'dedicated_site',
+        'nama_site',
+        'isactive'
+    ];
 
     protected $guarded=['id'];
 
@@ -32,7 +45,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        // 'remember_token',
     ];
 
     /**
