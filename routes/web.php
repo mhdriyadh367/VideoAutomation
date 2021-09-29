@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,17 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', function(){
     return view('dashboard.index');
 })->middleware('auth');
+
+
+Route::prefix('video')->group(function() {
+    Route::get('/', [VideoController::class, 'index'])->name('video.index');
+    Route::post('/', [VideoController::class, 'store'])->name('video.store');
+    Route::post('/video', [VideoController::class, 'store_video'])->name('video.store.video');
+    Route::get('/{id}', [VideoController::class, 'show'])->name('video.show');
+    // Route::delete('/{id}', [VideoController::class, 'destroy'])->name('video.destroy');
+
+
+    Route::post('/coba/dulu', [VideoController::class, 'coba'])->name('video.coba');
+    Route::post('/coba/gabung', [VideoController::class, 'merge_video'])->name('video.gabung');
+});
 
