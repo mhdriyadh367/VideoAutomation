@@ -108,68 +108,35 @@ class LoginController extends Controller
                 ],
                     
                 );
-                if (Auth::attempt(['sid' => '7V2R6', 'password' => '7V2R6'])) {
-                    echo "halo";
-                } else
-                {
-                    echo "oke";
-                }
-                // dd($user);
-
-                
-
-                // if($user) {
-
-                //     if($this->masuk($sid, $password)){
-                //         dd($sid);
-                //     }
-                //     echo "Gagal Login";
-
+                // if (Auth::attempt(['sid' => '7V2R6', 'password' => '7V2R6'])) {
+                //     echo "halo";
+                // } else
+                // {
+                //     echo "oke";
                 // }
-
-
-
+                if(isset($user) > 0 ) {
+                    return redirect('/dashboard');
                 }
 
-                
-                
-                
+            }
 
             } 
             else {
                 return back()->withErrors([
-                    'sid' => 'The provided credentials do not match our records.'.$result['success'],
+                    'sid' => 'Login Failed'.$result['success'],
                 ]);
             }
         }
-        // if (Auth::attempt(['sid' => $sid, 'password' => $password, 'isactive' => 1])) {
-        //     // The user is active, not suspended, and exists.
-        //     $request->session()->regenerate();
 
-        //     return redirect()->intended('/dashboard');
-        // }
-
-
-    
-
-
-
-        // if(Auth::attempt($credentials)){
-        //     $request->session()->regenerate();
-
-        //     return redirect()->intended('/dashboard');
-        // }
-
-        // return back()->with('loginError', 'Login failed');
     }
-    protected function masuk($sid, $password){
-        if (Auth::attempt(['sid' => $sid, 'password' => $password, 'isactive' => 1])) {
-            return true;
-        }else
-        {
-            return false;
-        }
-    }
+    // protected function masuk($sid, $password){
+    //     if (Auth::attempt(['sid' => $sid, 'password' => $password, 'isactive' => 1])) {
+    //         return true;
+    //     }else
+    //     {
+    //         return false;
+    //     }
+    // }
     
 
     public function logout(Request $request)

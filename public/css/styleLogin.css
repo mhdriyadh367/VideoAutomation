@@ -1,16 +1,17 @@
 
 
 body{
-  /* background-image: url(../icon/1.svg); */
+  
   background-image: url(../icon/tambang.jpg);
 
-  /* width: 100%; */
+  
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   
 }
+
 
 
 .form {
@@ -77,3 +78,9 @@ small{
   margin-bottom: -1px;
   
 }
+
+.carousel-inner img {
+  width: 100%;
+}
+
+

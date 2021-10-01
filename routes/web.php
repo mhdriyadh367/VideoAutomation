@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HelpController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
@@ -40,5 +41,10 @@ Route::get('/dashboard', function(){
     return view('dashboard.index');
 });
 
-// ->middleware('auth')
+// ->middleware('auth');
 
+
+
+
+// Help
+Route::get('/help', [HelpController::class, 'index']);
