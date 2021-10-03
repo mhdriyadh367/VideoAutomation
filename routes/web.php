@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HelpController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\VideoController;
@@ -57,3 +58,7 @@ Route::prefix('video')->group(function() {
     Route::get('/coba/gabung/lagi', [VideoController::class, 'merge_video_coba'])->name('video.gabung.coba');
 });
 
+// ->middleware('auth');
+
+// Help
+Route::get('/help', [HelpController::class, 'index']);

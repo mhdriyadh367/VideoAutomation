@@ -15,6 +15,8 @@
     
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    
 
     {{-- trix editor --}}
     <link rel="stylesheet" type="text/css" href="/css/trix.css">
@@ -30,12 +32,12 @@
     
 @include('dashboard.layouts.header')
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
 
     
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <main class="col">
       @yield('container')
 
      
