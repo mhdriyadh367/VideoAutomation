@@ -8,7 +8,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use FFMpeg;
 
 use App\Models\Photo;
 use App\Models\Video;
@@ -29,7 +29,7 @@ class VideoController extends Controller
 
         if ($validator->fails()) 
         {
-            return response()->json([ 'success' => false, 'message'=> $validator->errors()]);
+            return response()->json( [ 'success' => false, 'message'=> $validator->errors()] );
         }
 
         $video = Video::create();
@@ -39,15 +39,72 @@ class VideoController extends Controller
 
     public function merge_video(Request $request)
     {
-        $process = new Process(["python3","video_merge.py",$request->input('id')]);
-        $process->run();
+        // $process = new Process(["python3","video_merge.py",$request->input('id')]);
+        // $process->run();
 
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-            return response()->json([ 'success' => false, 'message'=> $process]);
-        } else {
-            return response()->json([ 'success' => true, 'message'=> 'success', 'id' => $request->input('id')]);
+        // if (!$process->isSuccessful()) {
+        //     throw new ProcessFailedException($process);
+        //     return response()->json([ 'success' => false, 'message'=> $process]);
+        // } else {
+        //     return response()->json([ 'success' => true, 'message'=> 'success', 'id' => $request->input('id')]);
+        // }
+
+        $id = $request->input('id');
+
+        $photos = Photo::where('video_id', $id)->get();
+        $slides = [];
+
+        foreach($photos as $photo) {
+            array_push($slides, 'public/'.$photo->video);
         }
+
+        $name = 'mv_'.Date('mdYHis').uniqid().'.mp4';
+        $output = 'assets/video/'.$name.'.mp4';
+
+        $test = FFMpeg::open($slides)
+        ->export()
+        ->concatWithoutTranscoding()
+        ->save('public/'.$output);
+
+        $video = Video::where('id', $id)
+        ->update(['video' => $output]);
+
+        if($video) {
+            return response()->json([ 'success' => true, 'message'=> $video]);
+        } else {
+            return response()->json([ 'success' => false, 'message'=> 'Something error']);
+        }
+
+    }
+
+    public function merge_video_coba(Request $request)
+    {
+        $id=76;
+
+        $photos = Photo::where('video_id', $id)->get();
+        $slides = [];
+
+        foreach($photos as $photo) {
+            array_push($slides, 'public/'.$photo->video);
+        }
+
+        $name = 'mv_'.Date('mdYHis').uniqid().'.mp4';
+        $output = 'assets/video/'.$name.'.mp4';
+
+        $test = FFMpeg::open($slides)
+        ->export()
+        ->concatWithoutTranscoding()
+        ->save('public/'.$output);
+
+        $video = Video::where('id', $id)
+        ->update(['video' => $output]);
+
+        if($video) {
+            return response()->json([ 'success' => true, 'message'=> $video]);
+        } else {
+            return response()->json([ 'success' => false, 'message'=> 'Something error']);
+        }
+
     }
 
     public function coba(Request $request)
@@ -80,7 +137,7 @@ class VideoController extends Controller
                 "as_data" => 0
             ]
         ];
-        
+        send_tts:
         $url_tts = 'https://api.prosa.ai/v2/speech/tts-api?as_signed_url=true';
         $response_post_tts= Http::withHeaders([
             'x-api-key' => env('API_KEY_PROSA'),
@@ -98,26 +155,29 @@ class VideoController extends Controller
 
         $url_get_tts = 'https://api.prosa.ai/v2/speech/tts-api/'.$id.'?as_signed_url=true';
 
-        $status='in_progress';
-        $i = 0;
+        // $status='in_progress';
+        // $i = 0;
 
-        while($status == 'in_progress') {
-
-            $response_get_tts = Http::withHeaders([
-                'x-api-key' => env('API_KEY_PROSA'),
-            ])->get($url_get_tts);
+        get_tts:
+        $response_get_tts = Http::withHeaders([
+            'x-api-key' => env('API_KEY_PROSA'),
+        ])->get($url_get_tts);
     
-            if ( !$response_get_tts->successful())
-            {
-                return response()->json([ 'success' => false, 'message'=> $response_get_tts->json()['message'] ]);
-            }
-
-            $result_tts = $response_get_tts->json();
-            $status = $result_tts['status'];
-            $i = $i + 1;
+        if ( !$response_get_tts->successful())
+        {
+            return response()->json([ 'success' => false, 'message'=> $response_get_tts->json()['message'] ]);
         }
-        // return response()->json([ 'success' => false, 'message'=> 'loop= '.$i ]);
 
+        $result_tts = $response_get_tts->json();
+        $status = $result_tts['status'];
+        // $i = $i + 1;
+
+        if( $result_tts['status'] == 'in_progress' ) goto get_tts;
+        
+        if( $result_tts['result']['duration'] == '0.0' ) goto send_tts;
+
+        // return response()->json([ 'success' => false, 'message'=> 'loop= '.$i ]);
+        
         $url = $result_tts['result']['path'];
         $contents = file_get_contents($url);
 

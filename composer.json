@@ -11,6 +11,7 @@
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "pbmedia/laravel-ffmpeg": "^7.5",
         "symfony/process": "^5.3"
     },
     "require-dev": {

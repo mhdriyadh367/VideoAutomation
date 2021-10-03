@@ -52,5 +52,8 @@ Route::prefix('video')->group(function() {
 
     Route::post('/coba/dulu', [VideoController::class, 'coba'])->name('video.coba');
     Route::post('/coba/gabung', [VideoController::class, 'merge_video'])->name('video.gabung');
+
+
+    Route::get('/coba/gabung/lagi', [VideoController::class, 'merge_video_coba'])->name('video.gabung.coba');
 });
 

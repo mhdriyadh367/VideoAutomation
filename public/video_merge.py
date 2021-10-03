@@ -29,7 +29,7 @@ for result in results:
 final_clip = concatenate_videoclips(videos)
 name_video = 'assets/video/mv_'+str(time.time())+'.mp4'
 place_video = 'storage/'+name_video
-final_clip.write_videofile(place_video, fps=1)
+final_clip.resize(width=720).write_videofile(place_video, fps=5)
 
 sql = "UPDATE videos SET video='"+str(name_video)+"' WHERE id="+video_id
 cursor.execute(sql)

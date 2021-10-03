@@ -90,11 +90,14 @@
                     window.onbeforeunload = null;
                     $('.btn').prop('disabled', false);
                     $('.loading').remove();
-                    $("<div class='alert alert-danger py-1' id='alert-error'></div>").insertBefore("#slide-progress");
-                    $.each( response.message, function( key, value ) {
-                        $("#alert-error").append("<li>"+key+": "+value+"</li>");
-                    });
 
+                    if( response.message !== ''  )
+                    {
+                        $("<div class='alert alert-danger py-1' id='alert-error'></div>").insertBefore("#slide-progress");
+                        $.each( response.message, function( key, value ) {
+                            $("#alert-error").append("<li>"+key+": "+value+"</li>");
+                        });
+                    }
                 }
             }
         })
@@ -104,7 +107,7 @@
         var numItems = $('input#photo').length;
         var count = 0;
         $('input#photo').each(function(obj, v){
-            //arrNumber.push($(this).val());
+
             var formData = new FormData();
             formData.append('_token', '{{ csrf_token() }}'); 
             formData.append('video_id', id); 
@@ -125,27 +128,27 @@
                     window.onbeforeunload = null;
                     $('.loading').remove();
                     $('.btn').prop('disabled', false);
+                    return;
                 },
                 success:function(response){
                     count = count + 1;
-                    if (response.success) 
+                    if (response.success == true) 
                     {
                         if(count == numItems)
                         {
-                            toast('success','Success Convert All Image, wait a minute');
+                            toast('success','Success Convert All Slide, wait a minute!');
                             merge_video(id)
-                        } else {
-                            toast('success','Done '+count+' of '+numItems+' videos');
-                        }
+                        } 
                     } 
                     else {
-                    $("<div class='alert alert-danger py-1' id='alert-error'></div>").insertBefore("#slide-progress");
-                    $.each( response.message, function( key, value ) {
-                        $("#alert-error").append("<li>"+key+": "+value+"</li>");
-                    });
-                    toast('error','Something Wrong, please try again');
+                        toast('error','Something Wrong, please try again');
+                        window.onbeforeunload = null;
+                        $('.loading').remove();
+                        $('.btn').prop('disabled', false);
+                        return;
                     }
-                }
+                },
+                async: false
 
             })
 
@@ -175,16 +178,16 @@
                 toast('error','Something Wrong, please try again');
             },
             success:function(response){
-                if (response.success) 
-                {
-                   window.onbeforeunload = null;
-                   $('.loading').remove();
-                   $('.btn').prop('disabled', false);
-                   url = "{{ url('video') }}/"+response.id
-                   window.open(url, "_blank");
-                } else {
-                    toast('error','Something Error!');
-                }
+                window.onbeforeunload = null;
+                $('.loading').remove();
+                $('.btn').prop('disabled', false);
+                    if (response.success) 
+                    {
+                        url = "{{ url('video') }}/"+response.id
+                        window.open(url, "_blank");
+                    } else {
+                        toast('error','Something Error!');
+                    }
             }
         })
     }
