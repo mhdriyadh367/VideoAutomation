@@ -18,7 +18,7 @@ use App\Http\Controllers\VideoController;
 */
 
 Route::get('/', function () {
-    return view('login.index');
+    return view('welcome');
 });
 
 
@@ -43,7 +43,7 @@ Route::get('/dashboard', function(){
 })->middleware('auth');
 
 
-Route::prefix('video')->group(function() {
+Route::prefix('video')->middleware(['auth'])->group(function() {
     Route::get('/', [VideoController::class, 'index'])->name('video.index');
     Route::post('/', [VideoController::class, 'store'])->name('video.store');
     Route::post('/video', [VideoController::class, 'store_video'])->name('video.store.video');

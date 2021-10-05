@@ -70,7 +70,7 @@ class VideoController extends Controller
         ->update(['video' => $output]);
 
         if($video) {
-            return response()->json([ 'success' => true, 'message'=> $video]);
+            return response()->json([ 'success' => true, 'message'=> $id]);
         } else {
             return response()->json([ 'success' => false, 'message'=> 'Something error']);
         }
@@ -79,7 +79,8 @@ class VideoController extends Controller
 
     public function merge_video_coba(Request $request)
     {
-        $id=76;
+        // $id=76;
+        $id = $request->input('id');
 
         $photos = Photo::where('video_id', $id)->get();
         $slides = [];
@@ -149,7 +150,8 @@ class VideoController extends Controller
         }
 
         $result_post_tts = $response_post_tts->json();
-        $id = $result_post_tts['job_id'];
+        //return response()->json([ 'success' => false, 'message'=> $response_post_tts['data'][0]['job_id'] ], 400);
+        $id = $result_post_tts['data'][0]['job_id'];
         // return response()->json([ 'success' => false, 'message'=> $id ]);
         // $id = 'f6863f8808e24cf4833e1ac6cbc27fc1';
 
