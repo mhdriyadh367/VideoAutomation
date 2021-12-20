@@ -17,9 +17,13 @@ use App\Http\Controllers\VideoController;
 |
 */
 
+Route::get('/home', function () {
+    return view('welcome');
+})->name('home');
+
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
 
@@ -57,6 +61,8 @@ Route::prefix('video')->middleware(['auth'])->group(function() {
 
     Route::get('/coba/gabung/lagi', [VideoController::class, 'merge_video_coba'])->name('video.gabung.coba');
 });
+
+Route::get('/coba/tes', [VideoController::class, 'tes'])->name('video.gabung.coba');
 
 // ->middleware('auth');
 

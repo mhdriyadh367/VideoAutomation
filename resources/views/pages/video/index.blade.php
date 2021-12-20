@@ -181,7 +181,7 @@
                 $('.btn').prop('disabled', false);
                     if (response.success) 
                     {
-                        url = "{{ url('video') }}/"+response.id
+                        url = "{{ url('video') }}/"+response.message
                         window.open(url, "_blank");
                     } else {
                         toast('error','Something Error!');
