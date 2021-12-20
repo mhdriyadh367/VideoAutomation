@@ -11,10 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    
     @include('includes.style')
-
-
+    
 </head>
 
 <body>
@@ -123,7 +121,7 @@
                 data: formData,  
                 error: function(xhr, status, error) {
                     var err = eval("(" + xhr.responseText + ")");
-                    //alert(err.message);
+                    alert(err.message);
                     toast('error','Something Wrong, please try again');
                     window.onbeforeunload = null;
                     $('.loading').remove();
@@ -183,7 +181,7 @@
                 $('.btn').prop('disabled', false);
                     if (response.success) 
                     {
-                        url = "{{ url('video') }}/"+response.id
+                        url = "{{ url('video') }}/"+response.message
                         window.open(url, "_blank");
                     } else {
                         toast('error','Something Error!');

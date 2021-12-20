@@ -17,9 +17,13 @@ use App\Http\Controllers\VideoController;
 |
 */
 
+Route::get('/home', function () {
+    return view('welcome');
+})->name('home');
+
 Route::get('/', function () {
-    return view('login.index');
-});
+    return view('welcome');
+})->name('home');
 
 
 
@@ -43,7 +47,7 @@ Route::get('/dashboard', function(){
 })->middleware('auth');
 
 
-Route::prefix('video')->group(function() {
+Route::prefix('video')->middleware(['auth'])->group(function() {
     Route::get('/', [VideoController::class, 'index'])->name('video.index');
     Route::post('/', [VideoController::class, 'store'])->name('video.store');
     Route::post('/video', [VideoController::class, 'store_video'])->name('video.store.video');
@@ -57,6 +61,8 @@ Route::prefix('video')->group(function() {
 
     Route::get('/coba/gabung/lagi', [VideoController::class, 'merge_video_coba'])->name('video.gabung.coba');
 });
+
+Route::get('/coba/tes', [VideoController::class, 'tes'])->name('video.gabung.coba');
 
 // ->middleware('auth');
 

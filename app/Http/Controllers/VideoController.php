@@ -12,6 +12,7 @@ use FFMpeg;
 
 use App\Models\Photo;
 use App\Models\Video;
+use App\Http\Controllers\MP3;
 
 class VideoController extends Controller
 {
@@ -70,7 +71,7 @@ class VideoController extends Controller
         ->update(['video' => $output]);
 
         if($video) {
-            return response()->json([ 'success' => true, 'message'=> $video]);
+            return response()->json([ 'success' => true, 'message'=> $id]);
         } else {
             return response()->json([ 'success' => false, 'message'=> 'Something error']);
         }
@@ -79,7 +80,8 @@ class VideoController extends Controller
 
     public function merge_video_coba(Request $request)
     {
-        $id=76;
+        // $id=76;
+        $id = $request->input('id');
 
         $photos = Photo::where('video_id', $id)->get();
         $slides = [];
@@ -100,7 +102,7 @@ class VideoController extends Controller
         ->update(['video' => $output]);
 
         if($video) {
-            return response()->json([ 'success' => true, 'message'=> $video]);
+            return response()->json([ 'success' => true, 'message'=> $video->id]);
         } else {
             return response()->json([ 'success' => false, 'message'=> 'Something error']);
         }
@@ -115,7 +117,6 @@ class VideoController extends Controller
             'video_id' => 'required|integer'
         ];
 
-        // $this->validate($request, $rules);
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) 
@@ -123,69 +124,12 @@ class VideoController extends Controller
             return response()->json([ 'success' => false, 'message'=> $validator->errors()]);
         }
 
-        $body = [
-            "config" => [
-                "engine" => "tts-dimas-formal",
-                "wait" => 0,
-                "pitch" => 0,
-                "tempo" => 1,
-                "audio_format" => "opus"
-            ],
-            "request" => [
-                "label" => "string",
-                "text" => $request->input('text'),
-                "as_data" => 0
-            ]
-        ];
-        send_tts:
-        $url_tts = 'https://api.prosa.ai/v2/speech/tts-api?as_signed_url=true';
-        $response_post_tts= Http::withHeaders([
-            'x-api-key' => env('API_KEY_PROSA'),
-        ])->post($url_tts, $body);
-        
-        if ( !$response_post_tts->successful())
-        {
-            return response()->json([ 'success' => false, 'message'=> $response_post_tts->json()['message'] ]);
-        }
-
-        $result_post_tts = $response_post_tts->json();
-        $id = $result_post_tts['job_id'];
-        // return response()->json([ 'success' => false, 'message'=> $id ]);
-        // $id = 'f6863f8808e24cf4833e1ac6cbc27fc1';
-
-        $url_get_tts = 'https://api.prosa.ai/v2/speech/tts-api/'.$id.'?as_signed_url=true';
-
-        // $status='in_progress';
-        // $i = 0;
-
-        get_tts:
-        $response_get_tts = Http::withHeaders([
-            'x-api-key' => env('API_KEY_PROSA'),
-        ])->get($url_get_tts);
-    
-        if ( !$response_get_tts->successful())
-        {
-            return response()->json([ 'success' => false, 'message'=> $response_get_tts->json()['message'] ]);
-        }
-
-        $result_tts = $response_get_tts->json();
-        $status = $result_tts['status'];
-        // $i = $i + 1;
-
-        if( $result_tts['status'] == 'in_progress' ) goto get_tts;
-        
-        if( $result_tts['result']['duration'] == '0.0' ) goto send_tts;
-
-        // return response()->json([ 'success' => false, 'message'=> 'loop= '.$i ]);
-        
-        $url = $result_tts['result']['path'];
-        $contents = file_get_contents($url);
-
         $path = 'assets/music/';
         $name = Date('mdYHis').uniqid().'.mp3';
-        $save_mp3 = 'public/'.$path.$name;
-            
-        $result = Storage::put($save_mp3, $contents);
+
+        $mp3_name = $path.$name;
+        //Prosa AI
+        //$process_tts = $this->ttsProsa($request, $mp3_name);
             
         $photo = $request->file('photo')->store(
             'assets/photo', 'public'
@@ -195,10 +139,13 @@ class VideoController extends Controller
             'text' => $request->input('text'),
             'photo' => $photo,
             'video_id' => $request->input('video_id'),
-            'audio' => $path.$name,
+            'audio' => $mp3_name,
         ]);
 
-        $process = new Process(["python3","video3.py",$store_photo->id]);
+        $process = new Process(["python3","gtts_mp3.py",$store_photo->id]);
+        $process->run();
+
+        $process = new Process(["python3","video3_copy.py",$store_photo->id]);
         $process->run();
 
         if (!$process->isSuccessful()) {
@@ -278,5 +225,76 @@ class VideoController extends Controller
         $video = Video::find($id);
 
         return view('pages.video.show', compact('video'));
+    }
+
+
+    protected function ttsProsa(Request $request, $mp3_name)
+    {
+        $body = [
+            "config" => [
+                "engine" => "tts-dimas-formal",
+                "wait" => 0,
+                "pitch" => 0,
+                "tempo" => 1,
+                "audio_format" => "opus"
+            ],
+            "request" => [
+                "label" => "string",
+                "text" => $request->input('text'),
+                "as_data" => 0
+            ]
+        ];
+        send_tts:
+        $url_tts = 'https://api.prosa.ai/v2/speech/tts-api?as_signed_url=true';
+        $response_post_tts= Http::withHeaders([
+            'x-api-key' => env('API_KEY_PROSA'),
+        ])->post($url_tts, $body);
+        
+        if ( !$response_post_tts->successful())
+        {
+            return response()->json([ 'success' => false, 'message'=> $response_post_tts->json()['message'] ]);
+        }
+
+        $result_post_tts = $response_post_tts->json();
+        $id = $result_post_tts['job_id'];
+        
+        $url_get_tts = 'https://api.prosa.ai/v2/speech/tts-api/'.$id.'?as_signed_url=true';
+
+        get_tts:
+        $response_get_tts = Http::withHeaders([
+            'x-api-key' => env('API_KEY_PROSA'),
+        ])->get($url_get_tts);
+    
+        if ( !$response_get_tts->successful())
+        {
+            return response()->json([ 'success' => false, 'message'=> $response_get_tts->json()['message'] ]);
+        }
+
+        $result_tts = $response_get_tts->json();
+        $status = $result_tts['status'];
+        // $i = $i + 1;
+
+        if( $result_tts['status'] == 'in_progress' ) goto get_tts;
+        
+        if( $result_tts['result']['duration'] == '0.0' ) goto send_tts;
+
+        // return response()->json([ 'success' => false, 'message'=> 'loop= '.$i ]);
+        
+        $url = $result_tts['result']['path'];
+        $contents = file_get_contents($url);
+
+        $save_mp3 = 'public/'.$mp3_name;
+            
+        return Storage::put($save_mp3, $contents);
+    }
+
+    public function tes(Request $request)
+    {
+        $mp3file = new MP3("storage/assets/music/093020210459106155441ee8851.mp3");//http://www.npr.org/rss/podcast.php?id=510282
+        // $duration1 = $mp3file->getDuration();//(faster) for CBR only
+        $duration2 = $mp3file->getDuration();//(slower) for VBR (or CBR)
+        // echo "duration: $duration1 seconds"."\n";
+        echo "estimate: $duration2 seconds"."\n";
+        echo MP3::formatTime($duration2)."\n";
     }
 }

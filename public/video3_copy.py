@@ -22,14 +22,6 @@ result = cursor.fetchall()
 hasil = result[0]
 
 music = 'storage/'+hasil[3]
-mytext = hasil[5]
-
-language = 'id'
-
-tts = gTTS(text=mytext, lang=language, slow=False)
-tts.save(music)
-
-music = 'storage/'+hasil[3]
 image = ['storage/'+hasil[2]]
 
 print(music)
